@@ -82,7 +82,7 @@ export default function Home() {
         <SheetHeader>
           <SheetTitle> Inventory , payment and billing </SheetTitle>
           <SheetDescription>
-          your payment side and billing regular income
+          your payment side and saad regular income
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-4 py-4">
