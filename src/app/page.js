@@ -54,8 +54,11 @@ export default function Home() {
             </Label>
             <Input id="username"  placeholder="Admin" className="col-span-3" />
           </div>
+          <Label  className="text-lg text-center ">
+              Key  
+            </Label> <hr />
           <div className="grid grid-cols-4 items-center gap-4">
-            
+          
             <InputOTP maxLength={6}>
       <InputOTPGroup>
         <InputOTPSlot index={0} />
@@ -69,7 +72,6 @@ export default function Home() {
       <InputOTPSeparator />
       <InputOTPGroup>
         <InputOTPSlot index={4} />
-        <InputOTPSlot index={5} />
       </InputOTPGroup>
     </InputOTP>
          </div>
