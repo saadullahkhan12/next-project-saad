@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,8 +18,34 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import Admin from "./admin/page";
+import Manager from "./manager/page";
 
 export default function Home() {
+  const [passkey, setPasskey] = useState("");
+  const [role, setRole] = useState("");
+
+  const adminPasskey = "64806";
+  const managerPasskey = "87807";
+
+  const handleSubmit = () => {
+    if (passkey === adminPasskey) {
+      setRole("admin");
+    } else if (passkey === managerPasskey) {
+      setRole("manager");
+    } else {
+      alert("Invalid passkey. Please try again.");
+    }
+  };
+
+  if (role === "admin") {
+    return <Admin />;
+  }
+  
+  if (role === "manager") {
+    return <Manager />;
+  }
+
   return (
     <div className="container px-4 sm:px-6 lg:px-8 mx-auto">
       <Sheet>
@@ -55,7 +82,7 @@ export default function Home() {
             <Label className="text-base sm:text-lg text-center mt-4">Key</Label>
             <hr className="border-t border-gray-300" />
             <div className="flex justify-center items-center gap-2">
-              <InputOTP maxLength={6}>
+              <InputOTP maxLength={5} onChange={setPasskey}>
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
                   <InputOTPSlot index={1} />
@@ -66,15 +93,13 @@ export default function Home() {
                   <InputOTPSlot index={3} />
                 </InputOTPGroup>
                 <InputOTPSeparator />
-                <InputOTPGroup>
-                  <InputOTPSlot index={4} />
-                </InputOTPGroup>
+                <InputOTPSlot index={4} />
               </InputOTP>
             </div>
           </div>
           <SheetFooter>
             <SheetClose asChild>
-              <Button type="submit" className="w-full sm:w-auto">
+              <Button type="button" className="w-full sm:w-auto" onClick={handleSubmit}>
                 Save
               </Button>
             </SheetClose>
